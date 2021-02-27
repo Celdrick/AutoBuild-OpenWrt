@@ -155,5 +155,3 @@ jobs:
       with:
         name: OpenWrt_Lean_${{ env.date }}
         path: openwrt/bin/targets
-        name: OpenWrt
-        path: openwrt/bin

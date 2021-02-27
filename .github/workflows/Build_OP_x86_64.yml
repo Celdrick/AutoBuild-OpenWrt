@@ -155,11 +155,11 @@ jobs:
       with:
         name: OpenWrt_Lean_${{ env.date }}
         path: openwrt/bin/targets
-        
-      # Upload to Drive
-      - name: Upload to Google Drive
-        uses: Jodebu/upload-to-drive@master
-        with:
-          target: openwrt/bin/targets
-          credentials: ${{ secrets.GOOGLE }}
-          folder: ${{ secrets.FOLDER }}
+      
+    # Upload to Drive
+    - name: Upload to Google Drive
+      uses: Jodebu/upload-to-drive@master
+      with:
+        target: openwrt/bin/targets
+        credentials: ${{ secrets.GOOGLE }}
+        folder: ${{ secrets.FOLDER }}

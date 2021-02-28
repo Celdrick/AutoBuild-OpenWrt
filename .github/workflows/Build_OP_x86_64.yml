@@ -144,7 +144,7 @@ jobs:
         find -name "*version.buildinfo*" | xargs -i mv -f {} packages
         find -name "*sha256sums*" | xargs -i mv -f {} packages
         find -name "*.manifest*" | xargs -i mv -f {} packages
-        #find -name "*.bin*" | xargs -i mv -f {} packages
+        find -name "*.bin*" | xargs -i mv -f {} packages
         find -name "*.vmdk*" | xargs -i mv -f {} packages
         #find -name "*rootfs.img*" | xargs -i mv -f {} packages
         #find -name "*tar.gz*" | xargs -i mv -f {} packages

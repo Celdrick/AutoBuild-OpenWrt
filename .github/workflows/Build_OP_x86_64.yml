@@ -170,5 +170,6 @@ jobs:
       uses: Jodebu/upload-to-drive@master
       with:
         target: openwrt/bin/targets
+        name: OpenWrt_Lean_${{ env.date }}
         credentials: ${{ secrets.GOOGLE }}
         folder: ${{ secrets.FOLDER }}

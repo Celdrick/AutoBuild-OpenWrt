@@ -150,12 +150,21 @@ jobs:
         #find -name "*tar.gz*" | xargs -i mv -f {} packages
         rm -rf packages
       
-    - name : 打包上传
-      uses: actions/upload-artifact@master
+    #- name : 打包上传
+    #  uses: actions/upload-artifact@master
+    #  with:
+    #    name: OpenWrt_Lean_${{ env.date }}
+    #    path: openwrt/bin/targets
+        
+    # 发布到 Release
+    - name: Release zip
+      uses: ncipollo/release-action@v1.8.0
       with:
+        artifacts: "openwrt/bin/targets"
         name: OpenWrt_Lean_${{ env.date }}
-        path: openwrt/bin/targets
-      
+        token: ${{ secrets.GRT }}
+
+    
     # Upload to Drive
     - name: Upload to Google Drive
       uses: Jodebu/upload-to-drive@master

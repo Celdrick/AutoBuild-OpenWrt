@@ -15,15 +15,15 @@ on:
     branches: 
       - master
 
-  schedule:
-    - cron: 0 21 * * 5
+#  schedule:
+#    - cron: 0 21 * * 5
   
   #watch:
   #  types: [started]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
     - name: Checkout
@@ -144,8 +144,8 @@ jobs:
         find -name "*version.buildinfo*" | xargs -i mv -f {} packages
         find -name "*sha256sums*" | xargs -i mv -f {} packages
         find -name "*.manifest*" | xargs -i mv -f {} packages
-        find -name "*.bin*" | xargs -i mv -f {} packages
-        find -name "*.vmdk*" | xargs -i mv -f {} packages
+        #find -name "*.bin*" | xargs -i mv -f {} packages
+        #find -name "*.vmdk*" | xargs -i mv -f {} packages
         #find -name "*rootfs.img*" | xargs -i mv -f {} packages
         #find -name "*tar.gz*" | xargs -i mv -f {} packages
         rm -rf packages
@@ -161,7 +161,7 @@ jobs:
     - name: Release zip
       uses: ncipollo/release-action@v1.8.0
       with:
-        artifacts: "openwrt/bin/targets"
+        artifacts: "release.tar.gz,openwrt/bin/targets/*"
         tag: ${{ env.date }}
         name: OpenWrt_Lean_${{ env.date }}
         token: ${{ secrets.GRT }}

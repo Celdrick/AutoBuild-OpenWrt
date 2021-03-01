@@ -1,8 +1,8 @@
 name: Build_NanoPi_R4S
 
-on: 
-  release:
-    types: [published]
+#on: 
+#  release:
+#    types: [published]
 
   #push:
   #  branches: 

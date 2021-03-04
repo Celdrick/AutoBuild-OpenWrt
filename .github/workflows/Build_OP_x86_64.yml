@@ -158,13 +158,13 @@ jobs:
         
     # Upload to Release
     # Create the secrets.GRT by going to the url:https://github.com/settings/tokens
-    - name: Release zip
-      uses: ncipollo/release-action@v1.8.0
-      with:
-        artifacts: "release.tar.gz,openwrt/bin/targets/*"
-        tag: ${{ env.date }}
-        name: OpenWrt_Lean_${{ env.date }}
-        token: ${{ secrets.GRT }}
+    #- name: Release zip
+    #  uses: ncipollo/release-action@v1.8.0
+    #  with:
+    #    artifacts: "release.tar.gz,openwrt/bin/targets/*"
+    #    tag: ${{ env.date }}
+    #    name: OpenWrt_Lean_${{ env.date }}
+    #    token: ${{ secrets.GRT }}
 
     
     # Upload to Google Drive

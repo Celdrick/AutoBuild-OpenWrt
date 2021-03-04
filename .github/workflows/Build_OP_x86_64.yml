@@ -149,7 +149,27 @@ jobs:
         #find -name "*rootfs.img*" | xargs -i mv -f {} packages
         #find -name "*tar.gz*" | xargs -i mv -f {} packages
         rm -rf packages
-      
+
+
+    - name: Upload firmware to WeTransfer
+      id: wetransfer
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
+      working-directory: ./openwrt
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        tar -zcf openwrt-x86-64-${{ env.date }}.tar.gz /home/runner/work/AutoBuild-OpenWrt/AutoBuild-OpenWrt/openwrt/bin/targets/x86/64/openwrt/bin/targets/x86/64/
+        ./transfer wet -s -p 16 --no-progress openwrt-x86-64-${{ env.date }}.tar.gz 2>&1 | tee wetransfer.log
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+        echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
+        
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
+        
+        
     #- name : Upload
     #  uses: actions/upload-artifact@master
     #  with:
